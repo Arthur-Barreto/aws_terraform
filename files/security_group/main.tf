@@ -9,4 +9,11 @@ resource "aws_security_group" "ssh_security_group" {
     cidr_blocks = var.cidr_blocks
   }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = var.cidr_blocks
+  }
+
 }
