@@ -15,7 +15,7 @@ variable "key_name" {
 
 variable "tags" {
   description = "Tags for the EC2 instance."
-  default     = {
+  default = {
     Name = "Ec2_first_arthurmsb"
   }
 }
