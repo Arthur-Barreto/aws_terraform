@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {
 
 resource "aws_subnet" "some_custom_public_subnet" {
   count             = var.subnet_count.public
-  vpc_id            = var.vpc_id
+  vpc_id            = aws_vpc.some_custom_vpc.id
   cidr_block        = var.public_subnet_cidr_blocks[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index]
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "some_custom_public_subnet" {
 
 resource "aws_subnet" "some_custom_private_subnet" {
   count             = var.subnet_count.private
-  vpc_id            = var.vpc_id
+  vpc_id            = aws_vpc.some_custom_vpc.id
   cidr_block        = var.private_subnet_cidr_blocks[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index]
 
