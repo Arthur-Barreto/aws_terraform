@@ -37,7 +37,7 @@ variable "subnet_count" {
   description = "The number of subnets to create."
   type        = map(number)
   default = {
-    "public"  = 1,
+    "public"  = 2,
     "private" = 2
   }
 

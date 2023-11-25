@@ -4,8 +4,6 @@ resource "aws_launch_template" "launch_template" {
   instance_type = var.settings.web_app.instance_type
   key_name      = aws_key_pair.deployer_key_pair.key_name
 
-  user_data = base64encode()
-
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = [aws_security_group.ec2_security_group.id]
