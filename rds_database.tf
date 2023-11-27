@@ -10,7 +10,7 @@ resource "aws_db_instance" "my_database" {
   vpc_security_group_ids = [aws_security_group.rds_security_group.id]
   skip_final_snapshot    = var.settings.database.skip_final_snapshot
   identifier             = "cloudc"
-  multi_az               = false
+  multi_az               = true
   tags = {
     Name = "my_cloud_database"
   }
