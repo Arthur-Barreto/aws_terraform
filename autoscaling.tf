@@ -9,6 +9,23 @@ resource "aws_launch_template" "launch_template" {
     security_groups             = [aws_security_group.ec2_security_group.id]
   }
 
+  user_data = base64encode(templatefile("${path.module}/user_data.tftpl", {
+    db_host     = aws_db_instance.my_database.address
+    db_name     = var.settings.database.db_name
+    db_username = var.db_username
+    db_password = var.db_password
+  }))
+
+  # user_data = base64encode(
+  #   <<-EOF
+  #   #!/bin/bash
+  #   sudo apt update -y
+  #   sudo apt-get install -y nginx
+  #   sudo systemctl start nginx
+  #   sudo systemctl enable nginx
+  #   EOF
+  # )
+
   tag_specifications {
     resource_type = "instance"
     tags = {
@@ -24,6 +41,8 @@ resource "aws_autoscaling_group" "arthurmsb_asg" {
   max_size            = 10
   min_size            = 2
   vpc_zone_identifier = [aws_subnet.some_custom_public_subnet[0].id]
+
+  target_group_arns = [aws_lb_target_group.arthurmsb_target_group.arn]
 
   launch_template {
     id      = aws_launch_template.launch_template.id
