@@ -86,7 +86,7 @@ resource "aws_cloudwatch_metric_alarm" "arthurmsb_cpu_alarm_high" {
   namespace           = "AWS/EC2"
   period              = "10"
   statistic           = "Average"
-  threshold           = "20"
+  threshold           = "70"
 
   alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.arthurmsb_scale_up.arn]
@@ -104,7 +104,7 @@ resource "aws_cloudwatch_metric_alarm" "arthurmsb_cpu_alarm_low" {
   namespace           = "AWS/EC2"
   period              = "10"
   statistic           = "Average"
-  threshold           = "10"
+  threshold           = "30"
 
   alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.arthurmsb_scale_down.arn]
@@ -112,4 +112,18 @@ resource "aws_cloudwatch_metric_alarm" "arthurmsb_cpu_alarm_low" {
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.arthurmsb_asg.name
   }
+}
+
+resource "aws_autoscaling_policy" "scale_up_down_tracking" {
+  policy_type            = "TargetTrackingScaling"
+  name                   = "web_app_scale_up_down_tracking"
+  autoscaling_group_name = aws_autoscaling_group.arthurmsb_asg.name
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ALBRequestCountPerTarget"
+      resource_label         = "${split("/", aws_lb.arthurmsb_lb.id)[1]}/${split("/", aws_lb.arthurmsb_lb.id)[2]}/${split("/", aws_lb.arthurmsb_lb.id)[3]}/targetgroup/${split("/", aws_lb_target_group.arthurmsb_target_group.arn)[1]}/${split("/", aws_lb_target_group.arthurmsb_target_group.arn)[2]}"
+    }
+    target_value = 250
+  }
+
 }

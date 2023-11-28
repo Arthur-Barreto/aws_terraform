@@ -38,3 +38,8 @@ output "database_port" {
 #   depends_on  = [aws_lb.web_app_alb]
 
 # }
+
+output "autoscaling_rule" {
+  description = "The autoscaling rule."
+  value = "${split("/", aws_lb.arthurmsb_lb.id)[1]}/${split("/", aws_lb.arthurmsb_lb.id)[2]}/${split("/", aws_lb.arthurmsb_lb.id)[3]}/targetgroup/${split("/", aws_lb_target_group.arthurmsb_target_group.arn)[1]}/${split("/", aws_lb_target_group.arthurmsb_target_group.arn)[2]}"
+}
