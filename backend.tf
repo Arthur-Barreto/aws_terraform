@@ -1,18 +1,7 @@
-resource "aws_s3_bucket" "my_bucket" {
-  bucket = "arthurmsbucket"
-}
-
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.my_bucket.id
-
-  versioning_configuration {
-    status = "Enabled"
+terraform {
+  backend "s3" {
+    bucket = "arthurmsbucket"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
   }
-}
-
-resource "aws_s3_object" "s3_object" {
-  bucket = aws_s3_bucket.my_bucket.id
-  key    = "testobject"
-  source = "terraform.tfstate"
-
 }
