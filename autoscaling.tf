@@ -64,7 +64,7 @@ resource "aws_autoscaling_policy" "arthurmsb_scale_up" {
   name                   = "web_app_scale_up"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
+  cooldown               = 10
   autoscaling_group_name = aws_autoscaling_group.arthurmsb_asg.name
 
 }
@@ -73,7 +73,7 @@ resource "aws_autoscaling_policy" "arthurmsb_scale_down" {
   name                   = "web_app_scale_down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
+  cooldown               = 10
   autoscaling_group_name = aws_autoscaling_group.arthurmsb_asg.name
 
 }
@@ -84,9 +84,9 @@ resource "aws_cloudwatch_metric_alarm" "arthurmsb_cpu_alarm_high" {
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "10"
   statistic           = "Average"
-  threshold           = "90"
+  threshold           = "20"
 
   alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.arthurmsb_scale_up.arn]
@@ -102,9 +102,9 @@ resource "aws_cloudwatch_metric_alarm" "arthurmsb_cpu_alarm_low" {
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = "10"
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = "10"
 
   alarm_description = "This metric monitors ec2 cpu utilization"
   alarm_actions     = [aws_autoscaling_policy.arthurmsb_scale_down.arn]
