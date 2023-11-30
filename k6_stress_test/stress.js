@@ -4,8 +4,8 @@ import { check, sleep } from 'k6';
 
 export let options = {
     stages: [
-        { duration: '3m', target: 500 }, // Ramp up to 50 virtual users over 1 minute
-        { duration: '3m', target: 500 }, // Stay at 50 virtual users for 2 minutes
+        { duration: '3m', target: 100 }, // Ramp up to 50 virtual users over 1 minute
+        { duration: '3m', target: 100 }, // Stay at 50 virtual users for 2 minutes
         { duration: '1m', target: 0 },  // Ramp down to 0 virtual users over 1 minute
     ],
     http: {

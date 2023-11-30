@@ -36,3 +36,5 @@ terraform.rc
 
 #.pem files
 *.pem
+
+k6_stress_test/config.js
