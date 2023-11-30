@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "arthurmsb_asg" {
   desired_capacity    = 2
   max_size            = 10
   min_size            = 2
-  vpc_zone_identifier = [aws_subnet.some_custom_public_subnet[0].id]
+  vpc_zone_identifier = [aws_subnet.some_custom_public_subnet[0].id, aws_subnet.some_custom_public_subnet[1].id]
 
   target_group_arns = [aws_lb_target_group.arthurmsb_target_group.arn]
 
