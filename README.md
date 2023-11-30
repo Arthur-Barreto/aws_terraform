@@ -91,4 +91,32 @@ In designing the architecture, several key technical decisions were made to opti
 
 These technical decisions collectively aim to strike a balance between performance, cost-effectiveness, and system resilience, aligning with the project's educational focus on understanding fundamental AWS services and best practices in cloud architecture.
 
+## Real Cost - AWS Cost Explorer
 
+Over the past days, I have been actively testing the application and closely monitoring costs through AWS Cost Explorer. The following images showcase the cost usage and predictions from November 1st to November 30th.
+
+### Cost Usage Analysis (November 1st to November 30th)
+
+![Real Cost](./img/used_test.jpeg)
+
+The graph illustrates the cost usage of the infrastructure during the stated period. Notably, components such as RDS, EC2, and EC2(others) significantly contribute to the overall expenses.
+
+### Infrastructure Cost Prediction after Stress Testing
+
+![Real Cost](./img/used_prediction.jpeg)
+
+Following stress testing, the graph predicts the cost for the next month. Noteworthy contributors to the cost, such as RDS and EC2, indicate potential areas for optimization.
+
+### Cost Optimization Strategies
+
+After stress testing the application, it's evident that certain elements contribute more substantially to the infrastructure cost. Consider the following strategies for cost optimization:
+
+- **EC2 Instances:** Evaluate and potentially reduce the number of EC2 instances to optimize costs. Determine the optimal balance between performance and resource utilization.
+
+- **RDS Instance Size:** Consider downsizing the RDS instance if feasible without compromising application performance. Evaluate the required resources for the database workload.
+
+### Estimated Monthly Cost with Stress Testing
+
+In the second image, the estimated cost of the infrastructure post-stress testing is approximately $78.61 per month. The actual cost may fall within the range of $52.52 to $104.70 monthly. This estimation provides insights into potential fluctuations in costs under varying workloads.
+
+These observations and strategies aim to guide further optimizations in the infrastructure, ensuring a cost-effective yet performant cloud architecture.
