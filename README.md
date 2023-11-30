@@ -120,3 +120,20 @@ After stress testing the application, it's evident that certain elements contrib
 In the second image, the estimated cost of the infrastructure post-stress testing is approximately $78.61 per month. The actual cost may fall within the range of $52.52 to $104.70 monthly. This estimation provides insights into potential fluctuations in costs under varying workloads.
 
 These observations and strategies aim to guide further optimizations in the infrastructure, ensuring a cost-effective yet performant cloud architecture.
+
+## Destruction Instructions
+
+Run the following command to destroy the infrastructure:
+
+```bash
+terraform destroy
+```
+
+To destroy the S3 bucket, go to **aws dashboard** and delete it manually.
+
+## References
+
+- [Medium - Terraform](https://medium.com/strategio/using-terraform-to-create-aws-vpc-ec2-and-rds-instances-c7f3aa416133)
+- [k6](https://k6.io/docs/get-started/running-k6/)
+- [k6 with Grafana](https://www.youtube.com/watch?v=gvounvDSDGg)
+- [Grafana Cloud k6](https://grafana.com/docs/grafana-cloud/k6/)
