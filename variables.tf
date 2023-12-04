@@ -234,7 +234,7 @@ variable "db_password" {
 
 variable "ami" {
   description = "The AMI ID for the EC2 instance."
-  default     = "ami-0b7979da30dc149ef"
+  default     = "ami-03ae24afdb6541606"
 }
 
 variable "instance_type" {
